@@ -2,9 +2,11 @@
   "name": "polls",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/http/index.js",
   "scripts": {
-    "dev": "tsx watch src/http/server.ts"
+    "dev": "tsx watch src/http/server.ts",
+    "build": "tsc",
+    "start": "node src/http/server.js"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +14,7 @@
   "devDependencies": {
     "@types/node": "^20.11.16",
     "prisma": "^5.9.1",
+    "ts-node": "^10.9.2",
     "tsx": "^4.7.0",
     "typescript": "^5.3.3"
   },

@@ -35,4 +35,8 @@ app.register(voteOnPoll)
 
 app.register(pollResults)
 
-export default app;
+const port = process.env.PORT || 3333
+
+app.listen({port: Number(port)}).then(() => {
+  console.log(`HTTP server listening on port ${port}`)
+})
