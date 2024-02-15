@@ -11,7 +11,7 @@ import { pollResults } from './ws/poll-results'
 const app = fastify()
 
 app.register(cors, {
-  origin: 'http://localhost:3000',
+  origin: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', '*'],
   credentials: true,
@@ -25,12 +25,18 @@ app.register(cookie, {
 
 app.register(websocket)
 
+app.get('/', (req, res) => {
+  res.send({ hello: 'world' })
+})
+
 app.register(getPoll)
 app.register(createPoll)
 app.register(voteOnPoll)
 
 app.register(pollResults)
 
-app.listen({port: 3333}).then(() => {
-  console.log('HTTP server listening on port 3333')
+const port = process.env.PORT || 3333
+
+app.listen({port: Number(port)}).then(() => {
+  console.log(`HTTP server listening on port ${port}`)
 })
