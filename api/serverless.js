@@ -2,7 +2,7 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 
-let appp
+let app
 
 export default async (req, res) => {
   if (!app) {
