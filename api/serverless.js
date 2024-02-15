@@ -2,15 +2,13 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 
-import Fastify from "fastify";
-
-const app = Fastify({
-  logger: true,
-});
-
-app.register(import("../src/http/server.ts"));
+let appp
 
 export default async (req, res) => {
-  await app.ready();
+  if (!app) {
+    const serverModule = await import("../src/http/server.ts");
+    app = serverModule.default;
+    await app.ready();
+  }
   app.server.emit('request', req, res);
-}
+};
