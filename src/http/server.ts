@@ -9,6 +9,8 @@ import { voteOnPoll } from './routes/vote-on-poll'
 import { pollResults } from './ws/poll-results'
 
 const app = fastify()
+const port = Number(process.env.PORT) || 3333;
+const host = ("RENDER" in process.env) ? `0.0.0.0` : `localhost`;
 
 app.register(cors, {
   origin: true,
@@ -35,8 +37,9 @@ app.register(voteOnPoll)
 
 app.register(pollResults)
 
-const port = process.env.PORT || 3333
-
-app.listen({port: Number(port)}).then(() => {
-  console.log(`HTTP server listening on port ${port}`)
+app.listen({ port, host }, (err, address) => {
+  if (err) {
+    app.log.error(err)
+    process.exit(1)
+  }
 })
