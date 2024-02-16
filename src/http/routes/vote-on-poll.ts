@@ -55,6 +55,8 @@ export async function voteOnPoll(app: FastifyInstance) {
         maxAge: 60 * 60 * 24 * 30,
         signed: true,
         httpOnly: true,
+        sameSite: process.env.NODE_ENV === 'production' ? 'none' : undefined,
+        secure: process.env.NODE_ENV === 'production',
       })
     }
 
