@@ -25,7 +25,7 @@ app.register(cookie, {
   hook: 'onRequest',
   parseOptions: {
     path: '/',
-    domain: 'polls-web.vercel.app',
+    domain: '.vercel.app',
     maxAge: 60 * 60 * 24 * 30,
     httpOnly: true,
     signed: true,
