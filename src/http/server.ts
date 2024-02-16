@@ -23,6 +23,15 @@ app.register(cors, {
 app.register(cookie, {
   secret: 'QWOJ2198yuijoDWQN',
   hook: 'onRequest',
+  parseOptions: {
+    path: '/',
+    domain: 'polls-web.vercel.app',
+    maxAge: 60 * 60 * 24 * 30,
+    httpOnly: true,
+    signed: true,
+    secure: true,
+    sameSite: 'none',
+  }
 })
 
 app.register(websocket)

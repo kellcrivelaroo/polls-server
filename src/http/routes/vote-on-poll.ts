@@ -52,11 +52,12 @@ export async function voteOnPoll(app: FastifyInstance) {
 
       res.setCookie('sessionId', sessionId, {
         path: '/',
+        domain: 'polls-web.vercel.app',
         maxAge: 60 * 60 * 24 * 30,
-        signed: true,
         httpOnly: true,
-        sameSite: process.env.NODE_ENV === 'production' ? 'none' : undefined,
-        secure: process.env.NODE_ENV === 'production',
+        signed: true,
+        secure: true,
+        sameSite: 'none',
       })
     }
 
